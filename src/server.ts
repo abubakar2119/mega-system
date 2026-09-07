@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import { config } from "./shared/config.js";
 
 const fastify = new Fastify({
   logger: true,
@@ -11,7 +12,7 @@ fastify.get("/", (request, reply) => {
 });
 
 const start = async () => {
-  const PORT = process.env.PORT || 4000;
+  const PORT =config.PORT || 4000 
   try {
     await fastify.listen({ port: PORT });
     console.log(`Server is running at ${PORT}`);
