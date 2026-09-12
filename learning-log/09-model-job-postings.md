@@ -53,12 +53,13 @@ Why JSONB: Questions are read exclusively with the parent job record as a single
 
 When a Separate Table is Better: Needed if you must search across questions (e.g., finding all jobs asking about salary), maintain a global reusable question library, or support complex logic like multiple-choice branches.
 
-6. DDL & Example JSONB Structure
+ DDL & Example JSONB Structure
 
-```sql
+sql
+
 CREATE TABLE jobs (
   id                  uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
-  company_id          uuid        NOT NULL REFERENCES companies(id),
+  company_id          uuid        NOT NULL REFERENCES companies(id) ON DELETE RESTRICT,
   title               text        NOT NULL,
   description         text        NOT NULL,
   status              text        NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'open', 'closed')),
@@ -69,9 +70,11 @@ CREATE TABLE jobs (
   updated_at          timestamptz NOT NULL DEFAULT now()
 );
 
-```
 
-```json
+
+json
+
+
 [
   {
     "id": "e3a89012-b456-7890-abcd-ef1234567890",

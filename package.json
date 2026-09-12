@@ -1,5 +1,5 @@
 {
-  "name": "mega-system",
+  "name": "JobBridge",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,25 +8,32 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migrate": "tsx node_modules/node-pg-migrate/bin/node-pg-migrate up",
+    "migrate:down": "tsx node_modules/node-pg-migrate/bin/node-pg-migrate down 1",
+    "migrate:create": "node-pg-migrate create --migration-file-language ts",
+    "seed": "tsx scripts/seed.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abubakar2119/mega-system.git"
+    "url": "git+https://github.com/abubakar2119/JobBridge.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/abubakar2119/mega-system/issues"
+    "url": "https://github.com/abubakar2119/JobBridge/issues"
   },
-  "homepage": "https://github.com/abubakar2119/mega-system#readme",
+  "homepage": "https://github.com/abubakar2119/JobBridge#readme",
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^26.4.1",
+    "node-pg-migrate": "^9.0.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "fastify": "^5.12.3",
